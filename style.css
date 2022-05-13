@@ -1,5 +1,6 @@
 *{
     box-sizing: border-box;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 body{
@@ -8,11 +9,12 @@ body{
 }
 
 .toolbox-cont{
-    height: 5rem;
+    height: 4rem;
     background-color: #4b4b4b;
     display: flex;
     align-items: center;
-    border-radius: 4px;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
 }
 
 .toolbox-cont>*{
@@ -58,4 +60,55 @@ body{
 .action-btn-cont>*{
     font-size: 2rem;
     color: #d1d8e0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 100%;
+}
+
+.toolbox-col-cont>*:hover, .action-btn-cont>*:hover{
+    background-color: #485460;
+}
+
+.modal-cont{
+    height: 50vh;
+    width: 45vw;
+    background-color: lightblue;
+    position: absolute;
+    top: calc((100vh - 50vh)/2);
+    left: calc((100vw - 45vw)/2);
+    border-radius: 8px;
+    display: flex;
+}
+
+textarea{
+    height: 100%;
+    width: 75%;
+    /* border-radius: 8px; */
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    outline: none;
+    border: none;
+    resize: none;
+    background-color: #dfe4ea;
+    font-size: 2rem;
+}
+
+.priority-col-cont{
+    height: 100%;
+    width: 25%;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    background-color: #4b4b4b;
+}
+
+.priority-color{
+    height: 10%;
+    width: 38%;
+
 }
