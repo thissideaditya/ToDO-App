@@ -118,3 +118,32 @@ textarea{
 .active{
     border: 5px solid red;
 }
+
+.ticket-cont{
+    height: 12rem;
+    width: 15rem;
+    background-color: #f1f2f6;
+    border-radius: 8px;
+}
+.ticket-id{
+    height: 2rem;
+    background-color: red;
+}
+.ticket-color{
+    height: 1rem;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+}
+.task-area{
+    height: calc(100% - 1rem - 2rem);
+    border-radius: 8px;
+    font-size: 1.5rem;
+    outline: none;
+    overflow-wrap: break-word;
+}
+
+.main-cont{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
