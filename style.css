@@ -84,7 +84,9 @@ body{
     display: none;
 }
 .utility-box{
-    display: flex;
+    height: min-content;
+    width: min-content;
+    margin: 0.3rem 0.3rem 0rem 0.1rem;
 }
 .cut{
     color: #ed6a5e;
@@ -95,7 +97,7 @@ body{
 
 textarea{
     height: 100%;
-    width: 75%;
+    width: 80%;
     /* border-radius: 8px; */
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
@@ -108,7 +110,7 @@ textarea{
 
 .priority-col-cont{
     height: 100%;
-    width: 25%;
+    width: 20%;
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
     display: flex;

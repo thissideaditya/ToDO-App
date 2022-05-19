@@ -79,6 +79,7 @@ function createTicket(ticketColor, data, ticketId){
 
     mainCont.appendChild(ticketCont)
     handleRemoval(ticketCont, id)
+    handleColor(ticketCont, id)
 
     // If ticket is being created for the first time, then ticketid would be undefined
     if(!ticketId){
@@ -172,5 +173,31 @@ function getTicketIdx(id){
 
 // change priority colors of the tickets
 function handleColor(ticket, id){
-        
+    let ticketColorStrip = ticket.querySelector(".ticket-color")
+
+    ticketColorStrip.addEventListener("click", function(){
+        let currTicketColor = ticketColorStrip.classList[1]
+
+        currTicketColorIdx = colors.indexOf(currTicketColor)
+
+        let newTicketColorIdx = currTicketColorIdx + 1
+
+        newTicketColorIdx = newTicketColorIdx % colors.length
+        let newTicketColor = colors[newTicketColorIdx]
+
+        ticketColorStrip.classList.remove(currTicketColor)
+        ticketColorStrip.classList.add(newTicketColor)
+
+        // local storage updation
+        let ticketIdx = getTicketIdx(id)
+        ticketArr[ticketIdx].ticketColor = newTicketColor
+        localStorage.setItem("tickets", JSON.stringify(ticketArr))
+
+    })
+}
+
+// lock and unlock to make content editable true or false
+function handleLock(ticket, id){
+    // append icons in ticket
+    // toggle of icons and contenteditable property
 }
