@@ -1,6 +1,8 @@
 const uid = new ShortUniqueId();
 const addBtn = document.querySelector(".add-btn")
 const remBtn = document.querySelector(".rem-btn")
+const cut = document.querySelector(".cut")
+const done = document.querySelector(".done")
 const modalCont = document.querySelector(".modal-cont")
 const allPriorityColors = document.querySelectorAll(".priority-color")
 const textareaCont = document.querySelector(".textarea-cont")
@@ -23,8 +25,9 @@ addBtn.addEventListener('click', function(){
     addModal = !addModal
 })
 
-remBtn.addEventListener('click', function(){
+cut.addEventListener('click', function(){
     modalCont.style.display = "none"
+    addModal = !addModal
 })
 
 // to remove and add active class from each priority color of modal container
@@ -39,6 +42,16 @@ allPriorityColors.forEach(function(colorElement){
 })
 
 // to generate and display a ticket
+
+// done.addEventListener("click", function(){
+//     createTicket(modalPriorityColor, textareaCont.value)
+//         modalCont.style.display = "none"
+//         addModal = !addModal
+//         textareaCont.value = ""
+//         allPriorityColors.forEach(function(colorElement){
+//             colorElement.classList.remove("active")
+// })
+
 modalCont.addEventListener("keydown", function(e){
     let key = e.key
     if(key == "Shift"){
@@ -59,11 +72,13 @@ function createTicket(ticketColor, data, ticketId){
     ticketCont.setAttribute("class", "ticket-cont")
     ticketCont.innerHTML = `
         <div class="ticket-color ${ticketColor} "></div>
-        <div class="ticket-id">${id}</div>
         <div class="task-area">${data}</div>
+        <i class="fa-solid fa-lock"></i>
+        <i class="fa-solid fa-lock-open"></i>
     `
 
     mainCont.appendChild(ticketCont)
+    handleRemoval(ticketCont, id)
 
     // If ticket is being created for the first time, then ticketid would be undefined
     if(!ticketId){
@@ -118,4 +133,44 @@ for(let i = 0; i < toolBoxColors.length; i++){
         })
 
     })
+}
+
+// on clicking remBtn, make color red and make color white in clicking again
+let remBtnActive = false
+remBtn.addEventListener('click', function(){
+    if(remBtnActive){
+        remBtn.style.color = "white"
+    }else{
+        remBtn.style.color = "red"
+    }
+    remBtnActive = !remBtnActive
+    handleRemoval(ticketCont, id)
+})
+
+// removes ticket from local storage and UI
+function handleRemoval(ticket, id){
+    ticket.addEventListener("click", function(){
+        if(!remBtnActive) return
+        let idx = getTicketIdx(id)
+        ticketArr.splice(idx, 1)
+
+        // remove from local storage and set updated arr
+        localStorage.setItem("tickets", JSON.stringify(ticketArr))
+
+        // remove from frontend
+        ticket.remove()
+    })
+}
+
+// returns index of the ticket inside Local Storage's array
+function getTicketIdx(id){
+    let ticketidx = ticketArr.findIndex(function(ticketObj){
+        return ticketObj.ticketId == id
+    })
+    return ticketidx
+}
+
+// change priority colors of the tickets
+function handleColor(ticket, id){
+        
 }

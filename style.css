@@ -83,6 +83,15 @@ body{
     border-radius: 8px;
     display: none;
 }
+.utility-box{
+    display: flex;
+}
+.cut{
+    color: #ed6a5e;
+}
+.done{
+    color: #61c554;
+}
 
 textarea{
     height: 100%;
@@ -118,10 +127,10 @@ textarea{
 .active{
     border: 5px solid red;
 }
-
 .ticket-cont{
     height: 12rem;
     width: 15rem;
+    margin: 1rem;
     background-color: #f1f2f6;
     border-radius: 8px;
 }
