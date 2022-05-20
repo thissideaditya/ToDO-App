@@ -158,3 +158,8 @@ textarea{
     justify-content: space-around;
     flex-wrap: wrap;
 }
+
+.ticket-lock{
+    display: flex;
+    justify-content: flex-end;
+}

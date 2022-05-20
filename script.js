@@ -12,6 +12,8 @@ let modalPriorityColor = colors[colors.length - 1]
 let toolBoxColors = document.querySelectorAll(".color")
 
 let ticketArr = []
+let lockClass = "fa-lock"
+let unlockClass = "fa-lock-open"
 
 // to open close modal container
 let addModal = false
@@ -73,13 +75,15 @@ function createTicket(ticketColor, data, ticketId){
     ticketCont.innerHTML = `
         <div class="ticket-color ${ticketColor} "></div>
         <div class="task-area">${data}</div>
-        <i class="fa-solid fa-lock"></i>
-        <i class="fa-solid fa-lock-open"></i>
+        <div class="ticket-lock">
+          <i class="fa-solid fa-lock"></i>
+        </div>
     `
 
     mainCont.appendChild(ticketCont)
     handleRemoval(ticketCont, id)
     handleColor(ticketCont, id)
+    handleLock(ticketCont, id)
 
     // If ticket is being created for the first time, then ticketid would be undefined
     if(!ticketId){
@@ -199,5 +203,24 @@ function handleColor(ticket, id){
 // lock and unlock to make content editable true or false
 function handleLock(ticket, id){
     // append icons in ticket
+    let ticketLockELe = ticket.querySelector(".ticket-lock")
+    let ticketLock = ticketLockELe.children[0]
+    let ticketTaskArea = ticket.querySelector(".task-area")
+
     // toggle of icons and contenteditable property
+    ticketLock.addEventListener("click", function(){
+        let ticketIdx = getTicketIdx(id)
+        if(ticketLock.classList.contains(lockClass)){
+            ticketLock.classList.remove(lockClass)
+            ticketLock.classList.add(unlockClass)
+            ticketTaskArea.setAttribute("contenteditable", "true")
+        }else{
+            ticketLock.classList.remove(unlockClass)
+            ticketLock.classList.add(lockClass)
+            ticketTaskArea.setAttribute("contenteditable", "false")
+        }
+
+        ticketArr[ticketIdx].data = ticketTaskArea.innerText
+        localStorage.setItem("tickets", JSON.stringify(ticketArr))
+    })
 }
