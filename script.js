@@ -45,26 +45,14 @@ allPriorityColors.forEach(function(colorElement){
 
 // to generate and display a ticket
 
-// done.addEventListener("click", function(){
-//     createTicket(modalPriorityColor, textareaCont.value)
-//         modalCont.style.display = "none"
-//         addModal = !addModal
-//         textareaCont.value = ""
-//         allPriorityColors.forEach(function(colorElement){
-//             colorElement.classList.remove("active")
-// })
-
-modalCont.addEventListener("keydown", function(e){
-    let key = e.key
-    if(key == "Shift"){
-        createTicket(modalPriorityColor, textareaCont.value)
+done.addEventListener("click", function(){
+    createTicket(modalPriorityColor, textareaCont.value)
         modalCont.style.display = "none"
         addModal = !addModal
         textareaCont.value = ""
         allPriorityColors.forEach(function(colorElement){
             colorElement.classList.remove("active")
-        })
-    }
+    })
 })
 
 // function to create new ticket
